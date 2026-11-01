@@ -26,9 +26,14 @@ dbt_packages/
 .user.yml
 **/.user.yml
 
+
 # Secrets & Profiles
 .env
 **/.env
 profiles.yml
 **/profiles.yml
 
+# md files
+decisions.md
+flow.md
+notes.md
