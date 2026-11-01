@@ -7,4 +7,28 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+
+# macOS
+.DS_Store
+**/.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# dbt logs, artifacts, and user configs
+logs/
+**/logs/
+target/
+**/target/
+dbt_packages/
+**/dbt_packages/
+.user.yml
+**/.user.yml
+
+# Secrets & Profiles
+.env
+**/.env
+profiles.yml
+**/profiles.yml
+

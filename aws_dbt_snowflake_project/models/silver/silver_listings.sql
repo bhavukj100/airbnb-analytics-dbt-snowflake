@@ -1,0 +1,15 @@
+{{ config(materialized='incremental', unique_key='listing_id') }}
+
+SELECT 
+    listing_id,
+    host_id
+    property_type,
+    city,
+    country,
+    accommodates,
+    bedrooms,
+    bathrooms,
+    price_per_night,
+    {{ tag('cast(price_per_night as int)')}} AS price_per_night_tag,
+    created_at
+from {{ ref('bronze_listings')}} 
