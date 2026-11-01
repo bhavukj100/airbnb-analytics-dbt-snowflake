@@ -12,5 +12,5 @@ SELECT
         WHEN response_rate < 80 AND response_rate >= 60 THEN 'OK'
         ELSE 'POOR'
     END as response_rate_quality,
-    created_at as created_as
+    created_at as created_at
 FROM {{ ref('bronze_hosts') }}

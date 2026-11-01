@@ -2,7 +2,7 @@
 
 SELECT 
     listing_id,
-    host_id
+    host_id,
     property_type,
     city,
     country,
@@ -12,4 +12,4 @@ SELECT
     price_per_night,
     {{ tag('cast(price_per_night as int)')}} AS price_per_night_tag,
     created_at
-from {{ ref('bronze_listings')}} 
+from {{ ref('bronze_listings')}}

@@ -1,9 +1,23 @@
 {
-    "editor.formatOnSave": false,
+    "files.associations": {
+        "*.sql": "jinja-sql",
+        "*.yml": "jinja-yaml"
+    },
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "sql": true,
+        "jinja-sql": true
+    },
+    "editor.formatOnSave": true,
     "[sql]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": true
     },
     "[jinja-sql]": {
-        "editor.formatOnSave": false
-    }
+        "editor.formatOnSave": true
+    },
+    "dbt.perspectiveTheme": "Pro Dark",
+    "python.analysis.supportAllPythonDocuments": true,
+    "python.analysis.enableDjangoSupport": true,
+    "js/ts.tsdk.promptToUseWorkspaceVersion": true
 }
