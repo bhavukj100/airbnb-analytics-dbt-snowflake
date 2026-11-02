@@ -6,8 +6,7 @@ reusable Jinja macros, and timestamp snapshots.
 
 ## Snowflake results and sample data
 
-The screenshots below were captured directly in Snowsight on November 2, 2026,
-using read-only SELECT queries against the original `AIRBNB.GOLD` tables.
+The screenshots below show read-only queries against `AIRBNB.GOLD` in Snowsight.
 
 ### Gold data overview
 
@@ -36,15 +35,9 @@ configured dbt seeds.
 
 ![How Airbnb bookings, hosts, and listings move through the project](docs/screenshots/project-lineage.png)
 
-Here's how the pieces fit together, from the source tables to the final fact
-model. Blue arrows follow the dependencies in dbt's manifest. Dashed amber
-arrows follow table names used directly in [`obt.sql`](models/gold/obt.sql)
-and [`fact.sql`](models/gold/fact.sql), which dbt doesn't include in its graph.
-
-The diagram brings together 3 sources, 11 models, and 3 snapshots. It was drawn
-from the project files and the dbt 1.12.6 manifest generated on November 2, 2026,
-rather than captured from dbt Docs or Snowsight.
-[See the details behind each connection](docs/lineage-dependencies.json).
+Bookings, hosts, and listings move through Bronze and Silver before coming
+together in Gold. Blue arrows show dbt dependencies; dashed amber arrows show
+direct SQL table references.
 
 ## What this repository includes
 
