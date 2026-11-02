@@ -1,20 +1,14 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv/
-
 # macOS
 .DS_Store
 **/.DS_Store
 ._*
 .Spotlight-V100
 .Trashes
+
+# Python environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
 
 # dbt logs, artifacts, and user configs
 logs/
@@ -32,6 +26,7 @@ dbt_packages/
 **/.env
 profiles.yml
 **/profiles.yml
+.vscode/
 
 # md files
 decisions.md
