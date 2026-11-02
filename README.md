@@ -34,61 +34,18 @@ configured dbt seeds.
 
 ## dbt model lineage
 
-Rendered directly from the dependencies in the supplied dbt manifest, generated
-on November 2, 2026 at 02:52 UTC with dbt 1.12.6. This is a rendering of the
-recorded dbt graph, not a dbt Docs or Snowsight screenshot.
+![Airbnb project lineage: staging, Bronze, Silver, Gold, snapshots, and FACT](docs/screenshots/project-lineage.png)
 
-### Sources, Bronze, and Silver
+This single image combines all 17 sources, models, and snapshots. **Solid blue
+arrows** are the 12 dependencies recorded in the supplied dbt manifest.
+**Dashed amber arrows** are six direct table references verified in
+[`obt.sql`](models/gold/obt.sql) and [`fact.sql`](models/gold/fact.sql);
+these references are present in SQL but are not recorded as dbt dependency edges.
 
-```mermaid
-flowchart TD
-  n14["staging.bookings"]
-  n15["staging.hosts"]
-  n16["staging.listings"]
-  n1["bronze_bookings"]
-  n2["bronze_hosts"]
-  n3["bronze_listings"]
-  n8["silver_bookings"]
-  n9["silver_hosts"]
-  n10["silver_listings"]
-  n14 --> n1
-  n15 --> n2
-  n16 --> n3
-  n1 --> n8
-  n2 --> n9
-  n3 --> n10
-```
-
-### Gold models and snapshots
-
-```mermaid
-flowchart TD
-  n7["obt"]
-  n0["bookings (ephemeral)"]
-  n5["hosts (ephemeral)"]
-  n6["listings (ephemeral)"]
-  n11["dim_bookings (snapshot)"]
-  n12["dim_hosts (snapshot)"]
-  n13["dim_listings (snapshot)"]
-  n4["fact"]
-  n7 --> n0
-  n7 --> n5
-  n7 --> n6
-  n0 --> n11
-  n5 --> n12
-  n6 --> n13
-```
-
-`obt` and `fact` have no upstream dependencies recorded in this manifest.
-Their SQL names Snowflake relations directly, so those table references are
-not represented as dbt dependency edges. `fact` therefore appears as an
-isolated node; no connections have been added by inference. The three ephemeral
-models and their snapshots retain the dependencies recorded by dbt.
-
-The graph includes all 17 sources, models, and snapshots and all 12 recorded
-edges between them. Tests, analyses, and macros are outside these diagrams.
-[Dependency records and manifest fingerprint](docs/lineage-dependencies.json)
-provide the exact node IDs, file paths, and parent lists used here.
+The image is rendered from the project artifacts, not captured from dbt Docs
+or Snowsight. The manifest was generated on November 2, 2026 at 02:52 UTC with
+dbt 1.12.6. [Dependency records and provenance](docs/lineage-dependencies.json)
+identify every node, recorded dependency, and direct SQL reference.
 
 ## What this repository includes
 
