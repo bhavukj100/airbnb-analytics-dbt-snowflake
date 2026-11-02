@@ -171,7 +171,4 @@ the snapshots later, use `dbt snapshot`.
 
 This project was informed by Ansh Lamba's
 [Airbnb End-To-End Data Engineering Project (For Beginners) | DBT + Snowflake +
-AWS](https://www.youtube.com/watch?v=3SZSDKEZqoA&t=819s). The video covers a
-broader AWS, Snowflake, and dbt workflow; this repository documents the dbt
-transformation work present here and does not include the video's AWS
-infrastructure or data-ingestion implementation.
+AWS](https://www.youtube.com/watch?v=3SZSDKEZqoA&t=819s). Through which I was able to learn and create this project. Big shout out to him for this project!
