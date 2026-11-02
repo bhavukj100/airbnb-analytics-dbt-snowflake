@@ -1,5 +1,5 @@
 {
-  "description": "Source, model, and snapshot dependencies extracted from the user-supplied dbt manifest. No SQL-inferred edges are added. Tests, analyses, and macros are outside this graph.",
+  "description": "Recorded dbt source/model/snapshot dependencies, plus separately identified direct SQL table references verified in the checked-in Gold models. Tests, analyses, and macros are outside this graph.",
   "manifest_sha256": "79023cf42b4976a5c203dcee331a7652685a4cf6400074af2b661448abecf009",
   "dbt_version": "1.12.6",
   "generated_at": "2026-11-02T02:52:01.127252Z",
@@ -147,6 +147,44 @@
       "resource_type": "source",
       "original_file_path": "models/sources/sources.yml",
       "depends_on": []
+    }
+  ],
+  "sql_table_references": [
+    {
+      "upstream": "model.aws_dbt_snowflake_project.silver_bookings",
+      "downstream": "model.aws_dbt_snowflake_project.obt",
+      "table_reference": "AIRBNB.silver.silver_BOOKINGS",
+      "original_file_path": "models/gold/obt.sql"
+    },
+    {
+      "upstream": "model.aws_dbt_snowflake_project.silver_listings",
+      "downstream": "model.aws_dbt_snowflake_project.obt",
+      "table_reference": "AIRBNB.silver.silver_LISTINGS",
+      "original_file_path": "models/gold/obt.sql"
+    },
+    {
+      "upstream": "model.aws_dbt_snowflake_project.silver_hosts",
+      "downstream": "model.aws_dbt_snowflake_project.obt",
+      "table_reference": "AIRBNB.silver.silver_HOSTS",
+      "original_file_path": "models/gold/obt.sql"
+    },
+    {
+      "upstream": "model.aws_dbt_snowflake_project.obt",
+      "downstream": "model.aws_dbt_snowflake_project.fact",
+      "table_reference": "AIRBNB.GOLD.OBT",
+      "original_file_path": "models/gold/fact.sql"
+    },
+    {
+      "upstream": "snapshot.aws_dbt_snowflake_project.dim_listings",
+      "downstream": "model.aws_dbt_snowflake_project.fact",
+      "table_reference": "AIRBNB.GOLD.DIM_LISTINGS",
+      "original_file_path": "models/gold/fact.sql"
+    },
+    {
+      "upstream": "snapshot.aws_dbt_snowflake_project.dim_hosts",
+      "downstream": "model.aws_dbt_snowflake_project.fact",
+      "table_reference": "AIRBNB.GOLD.DIM_HOSTS",
+      "original_file_path": "models/gold/fact.sql"
     }
   ]
 }
