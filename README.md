@@ -27,14 +27,68 @@ Repeated rows are visible in the result. A separate read-only query found no
 host with more than one distinct `DBT_VALID_FROM` value at capture time, so this
 image does not demonstrate a historical change between two versions.
 
-An actual dbt lineage graph is not included yet: no `manifest.json` is checked
-in, and the inspected Snowflake FACT lineage view displayed no upstream edges.
-The previously generated conceptual diagram is not used as lineage evidence.
-
 Fictional example inputs: [bookings](docs/sample-data/bookings.csv),
 [hosts](docs/sample-data/hosts.csv), and
 [listings](docs/sample-data/listings.csv). These are reference samples, not
 configured dbt seeds.
+
+## dbt model lineage
+
+Rendered directly from the dependencies in the supplied dbt manifest, generated
+on November 2, 2026 at 02:52 UTC with dbt 1.12.6. This is a rendering of the
+recorded dbt graph, not a dbt Docs or Snowsight screenshot.
+
+### Sources, Bronze, and Silver
+
+```mermaid
+flowchart TD
+  n14["staging.bookings"]
+  n15["staging.hosts"]
+  n16["staging.listings"]
+  n1["bronze_bookings"]
+  n2["bronze_hosts"]
+  n3["bronze_listings"]
+  n8["silver_bookings"]
+  n9["silver_hosts"]
+  n10["silver_listings"]
+  n14 --> n1
+  n15 --> n2
+  n16 --> n3
+  n1 --> n8
+  n2 --> n9
+  n3 --> n10
+```
+
+### Gold models and snapshots
+
+```mermaid
+flowchart TD
+  n7["obt"]
+  n0["bookings (ephemeral)"]
+  n5["hosts (ephemeral)"]
+  n6["listings (ephemeral)"]
+  n11["dim_bookings (snapshot)"]
+  n12["dim_hosts (snapshot)"]
+  n13["dim_listings (snapshot)"]
+  n4["fact"]
+  n7 --> n0
+  n7 --> n5
+  n7 --> n6
+  n0 --> n11
+  n5 --> n12
+  n6 --> n13
+```
+
+`obt` and `fact` have no upstream dependencies recorded in this manifest.
+Their SQL names Snowflake relations directly, so those table references are
+not represented as dbt dependency edges. `fact` therefore appears as an
+isolated node; no connections have been added by inference. The three ephemeral
+models and their snapshots retain the dependencies recorded by dbt.
+
+The graph includes all 17 sources, models, and snapshots and all 12 recorded
+edges between them. Tests, analyses, and macros are outside these diagrams.
+[Dependency records and manifest fingerprint](docs/lineage-dependencies.json)
+provide the exact node IDs, file paths, and parent lists used here.
 
 ## What this repository includes
 
