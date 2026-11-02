@@ -1,0 +1,5 @@
+booking_id,listing_id,booking_date,nights_booked,booking_amount,cleaning_fee,service_fee,booking_status,created_at
+9001,501,2026-01-12,3,240.00,45.00,24.00,confirmed,2026-01-13 09:00:00
+9002,502,2026-02-04,5,175.00,60.00,28.00,confirmed,2026-02-05 10:30:00
+9003,503,2026-02-20,2,410.00,35.00,32.00,cancelled,2026-02-21 12:15:00
+9004,501,2026-03-08,4,320.00,45.00,30.00,confirmed,2026-03-09 08:45:00

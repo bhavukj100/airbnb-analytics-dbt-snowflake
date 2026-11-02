@@ -4,6 +4,19 @@ A dbt project that transforms Airbnb booking, listing, and host data in
 Snowflake. It demonstrates layered SQL transformations, incremental models,
 reusable Jinja macros, and timestamp snapshots.
 
+## Project visuals and sample data
+
+![Project flow and synthetic data preview](docs/screenshots/demo-overview.png)
+
+![Host snapshot history preview](docs/screenshots/host-snapshot-history.png)
+
+![Illustrative project lineage](docs/screenshots/dbt-lineage.png)
+
+Fictional example inputs: [bookings](docs/sample-data/bookings.csv),
+[hosts](docs/sample-data/hosts.csv), and
+[listings](docs/sample-data/listings.csv). These are reference samples, not
+configured dbt seeds.
+
 ## What this repository includes
 
 This repository contains the dbt transformation layer. It expects the input
