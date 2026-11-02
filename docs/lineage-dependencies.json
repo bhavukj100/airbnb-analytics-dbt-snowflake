@@ -1,0 +1,152 @@
+{
+  "description": "Source, model, and snapshot dependencies extracted from the user-supplied dbt manifest. No SQL-inferred edges are added. Tests, analyses, and macros are outside this graph.",
+  "manifest_sha256": "79023cf42b4976a5c203dcee331a7652685a4cf6400074af2b661448abecf009",
+  "dbt_version": "1.12.6",
+  "generated_at": "2026-11-02T02:52:01.127252Z",
+  "project_name": "aws_dbt_snowflake_project",
+  "nodes": [
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.bookings",
+      "name": "bookings",
+      "resource_type": "model",
+      "original_file_path": "models/gold/ephemeral/bookings.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.obt"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.bronze_bookings",
+      "name": "bronze_bookings",
+      "resource_type": "model",
+      "original_file_path": "models/bronze/bronze_bookings.sql",
+      "depends_on": [
+        "source.aws_dbt_snowflake_project.staging.bookings"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.bronze_hosts",
+      "name": "bronze_hosts",
+      "resource_type": "model",
+      "original_file_path": "models/bronze/bronze_hosts.sql",
+      "depends_on": [
+        "source.aws_dbt_snowflake_project.staging.hosts"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.bronze_listings",
+      "name": "bronze_listings",
+      "resource_type": "model",
+      "original_file_path": "models/bronze/bronze_listings.sql",
+      "depends_on": [
+        "source.aws_dbt_snowflake_project.staging.listings"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.fact",
+      "name": "fact",
+      "resource_type": "model",
+      "original_file_path": "models/gold/fact.sql",
+      "depends_on": []
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.hosts",
+      "name": "hosts",
+      "resource_type": "model",
+      "original_file_path": "models/gold/ephemeral/hosts.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.obt"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.listings",
+      "name": "listings",
+      "resource_type": "model",
+      "original_file_path": "models/gold/ephemeral/listings.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.obt"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.obt",
+      "name": "obt",
+      "resource_type": "model",
+      "original_file_path": "models/gold/obt.sql",
+      "depends_on": []
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.silver_bookings",
+      "name": "silver_bookings",
+      "resource_type": "model",
+      "original_file_path": "models/silver/silver_bookings.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.bronze_bookings"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.silver_hosts",
+      "name": "silver_hosts",
+      "resource_type": "model",
+      "original_file_path": "models/silver/silver_hosts.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.bronze_hosts"
+      ]
+    },
+    {
+      "unique_id": "model.aws_dbt_snowflake_project.silver_listings",
+      "name": "silver_listings",
+      "resource_type": "model",
+      "original_file_path": "models/silver/silver_listings.sql",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.bronze_listings"
+      ]
+    },
+    {
+      "unique_id": "snapshot.aws_dbt_snowflake_project.dim_bookings",
+      "name": "dim_bookings",
+      "resource_type": "snapshot",
+      "original_file_path": "snapshots/dim_bookings.yml",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.bookings"
+      ]
+    },
+    {
+      "unique_id": "snapshot.aws_dbt_snowflake_project.dim_hosts",
+      "name": "dim_hosts",
+      "resource_type": "snapshot",
+      "original_file_path": "snapshots/dim_hosts.yml",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.hosts"
+      ]
+    },
+    {
+      "unique_id": "snapshot.aws_dbt_snowflake_project.dim_listings",
+      "name": "dim_listings",
+      "resource_type": "snapshot",
+      "original_file_path": "snapshots/dim_listings.yml",
+      "depends_on": [
+        "model.aws_dbt_snowflake_project.listings"
+      ]
+    },
+    {
+      "unique_id": "source.aws_dbt_snowflake_project.staging.bookings",
+      "name": "bookings",
+      "resource_type": "source",
+      "original_file_path": "models/sources/sources.yml",
+      "depends_on": []
+    },
+    {
+      "unique_id": "source.aws_dbt_snowflake_project.staging.hosts",
+      "name": "hosts",
+      "resource_type": "source",
+      "original_file_path": "models/sources/sources.yml",
+      "depends_on": []
+    },
+    {
+      "unique_id": "source.aws_dbt_snowflake_project.staging.listings",
+      "name": "listings",
+      "resource_type": "source",
+      "original_file_path": "models/sources/sources.yml",
+      "depends_on": []
+    }
+  ]
+}
