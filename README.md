@@ -4,13 +4,32 @@ A dbt project that transforms Airbnb booking, listing, and host data in
 Snowflake. It demonstrates layered SQL transformations, incremental models,
 reusable Jinja macros, and timestamp snapshots.
 
-## Project visuals and sample data
+## Snowflake results and sample data
 
-![Project flow and synthetic data preview](docs/screenshots/demo-overview.png)
+The screenshots below were captured directly in Snowsight on November 2, 2026,
+using read-only SELECT queries against the original `AIRBNB.GOLD` tables.
 
-![Host snapshot history preview](docs/screenshots/host-snapshot-history.png)
+### Gold data overview
 
-![Illustrative project lineage](docs/screenshots/dbt-lineage.png)
+![Actual Snowsight query and counts for AIRBNB.GOLD.FACT](docs/screenshots/snowflake-overview.jpg)
+
+At capture time, `AIRBNB.GOLD.FACT` contained 1,925,792 rows representing
+5,000 distinct booking IDs, 500 distinct listing IDs, and 189 distinct host IDs.
+The total row count includes repeated booking IDs; it is not a count of unique
+bookings.
+
+### Host snapshot rows
+
+![Actual Snowsight query and rows from AIRBNB.GOLD.DIM_HOSTS](docs/screenshots/snowflake-host-snapshot.jpg)
+
+This capture shows the existing host snapshot rows and their validity fields.
+Repeated rows are visible in the result. A separate read-only query found no
+host with more than one distinct `DBT_VALID_FROM` value at capture time, so this
+image does not demonstrate a historical change between two versions.
+
+An actual dbt lineage graph is not included yet: no `manifest.json` is checked
+in, and the inspected Snowflake FACT lineage view displayed no upstream edges.
+The previously generated conceptual diagram is not used as lineage evidence.
 
 Fictional example inputs: [bookings](docs/sample-data/bookings.csv),
 [hosts](docs/sample-data/hosts.csv), and
