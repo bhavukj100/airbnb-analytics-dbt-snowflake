@@ -34,18 +34,17 @@ configured dbt seeds.
 
 ## dbt model lineage
 
-![Airbnb project lineage: staging, Bronze, Silver, Gold, snapshots, and FACT](docs/screenshots/project-lineage.png)
+![How Airbnb bookings, hosts, and listings move through the project](docs/screenshots/project-lineage.png)
 
-This single image combines all 17 sources, models, and snapshots. **Solid blue
-arrows** are the 12 dependencies recorded in the supplied dbt manifest.
-**Dashed amber arrows** are six direct table references verified in
-[`obt.sql`](models/gold/obt.sql) and [`fact.sql`](models/gold/fact.sql);
-these references are present in SQL but are not recorded as dbt dependency edges.
+Here's how the pieces fit together, from the source tables to the final fact
+model. Blue arrows follow the dependencies in dbt's manifest. Dashed amber
+arrows follow table names used directly in [`obt.sql`](models/gold/obt.sql)
+and [`fact.sql`](models/gold/fact.sql), which dbt doesn't include in its graph.
 
-The image is rendered from the project artifacts, not captured from dbt Docs
-or Snowsight. The manifest was generated on November 2, 2026 at 02:52 UTC with
-dbt 1.12.6. [Dependency records and provenance](docs/lineage-dependencies.json)
-identify every node, recorded dependency, and direct SQL reference.
+The diagram brings together 3 sources, 11 models, and 3 snapshots. It was drawn
+from the project files and the dbt 1.12.6 manifest generated on November 2, 2026,
+rather than captured from dbt Docs or Snowsight.
+[See the details behind each connection](docs/lineage-dependencies.json).
 
 ## What this repository includes
 
